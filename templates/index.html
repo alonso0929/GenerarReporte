@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <title>Generar Word</title>
+</head>
+<body class="container mt-5">
+    <div>
+        <h1 class="text-center">Pruebas Simulación APIS Core Flag ON</h1>
+    </div>
+    <form action="/generate_word" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="responsable" class="form-label"><b>Responsable:</b></label>
+            <select name="responsable" class="form-select" required>
+                <option value="" disabled selected>Seleccione QA</option>
+                <option value="Alonso Molina">Alonso Molina</option>
+                <option value="Rony Mocilote">Rony Mocilote</option>
+                <option value="Joel Abanto">Joel Abanto</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="producto" class="form-label"><b>Producto:</b></label>
+            <input type="text" name="producto" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="financiamiento" class="form-label"><b>Financiamiento:</b></label>
+            <input type="text" name="financiamiento" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="casoprueba" class="form-label"><b>Caso de Prueba:</b></label>
+            <textarea name="casoprueba" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Registro de tercero BDU:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio1" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio1" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen1" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen1" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Registro de tercero ACSELX Aplicativo:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio2" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio2" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen2" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen2" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Registro de póliza ACSELX Aplicativo:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio3" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio3" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen3" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen3" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Registro de póliza RIMAC Salud:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio4" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio4" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen4" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen4" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Documentos de cobro CDX APLICATIVO:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio5" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio5" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen5" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen5" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Documentos de cobro CDX BD:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio6" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio6" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen6" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen6" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Pasarela de Pagos:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio7" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio7" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen7" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen7" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>SAS:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio8" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio8" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen8" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen8" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>AX OP:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio9" value="Si aplica" onclick="toggleInputFile(true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio9" value="No aplica" onclick="toggleInputFile(false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer" class="hidden">
+                <label for="imagen9" class="form-label">Evidencia:</label>
+                <input type="file" name="imagen9" class="form-control" accept="image/*">
+            </div>
+        </div>
+
+        <input type="submit" value="Generar Word" class="btn btn-primary">
+    </form>
+
+    <script>
+        function toggleInputFile(show) {
+            var inputFileContainer = document.getElementById("inputFileContainer");
+            if (show) {
+                inputFileContainer.classList.remove("hidden");
+            } else {
+                inputFileContainer.classList.add("hidden");
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>
