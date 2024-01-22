@@ -3,6 +3,7 @@ from io import BytesIO
 from docxtpl import DocxTemplate, InlineImage
 from docx.shared import Inches
 import os
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -16,6 +17,14 @@ def generate_image_paths(num_images):
 def generate_inline_images(document, image_paths):
     return [InlineImage(document, path, width=Inches(7.5), height=Inches(4.0)) if os.path.exists(path) else None for path in image_paths]
 
+def generate_date():
+    date_time = datetime.now()
+    return date_time.strftime("%d-%m-%Y")
+
+def generate_time():
+    date_time = datetime.now()
+    return date_time.strftime("%H:%M:%S")
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -25,6 +34,7 @@ def generate_word():
     producto = request.form['producto']
     financiamiento = request.form['financiamiento']
     casoprueba = request.form['casoprueba']
+    autor = request.form['responsable']
 
     opcion_radio = {f'opcion_radio{i}': request.form.get(f'opcion_radio{i}') for i in range(1, 10)}
 
@@ -41,6 +51,9 @@ def generate_word():
         'producto': producto,
         'financiamiento': financiamiento,
         'casoprueba': casoprueba,
+        'autor': autor,
+        'fecha': generate_date(),
+        'hora': generate_time(),
         **opcion_radio,
         **{f'imagen{i}': image for i, image in enumerate(generate_inline_images(document, image_paths), start=1)}
     }
