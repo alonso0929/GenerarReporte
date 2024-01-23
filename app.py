@@ -38,7 +38,7 @@ def generate_word():
 
     opcion_radio = {f'opcion_radio{i}': request.form.get(f'opcion_radio{i}') for i in range(1, 10)}
 
-    num_images = 9
+    num_images = 11
     image_paths = generate_image_paths(num_images)
 
     for i in range(1, num_images + 1):
