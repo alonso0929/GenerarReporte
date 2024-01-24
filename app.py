@@ -1,29 +1,14 @@
 from flask import Flask, render_template, request, send_file
 from io import BytesIO
-from docxtpl import DocxTemplate, InlineImage
-from docx.shared import Inches
+from docxtpl import DocxTemplate
 import os
-from datetime import datetime
+from utils import save_image
+from utils import generate_image_paths
+from utils import generate_inline_images
+from utils import generate_date
+from utils import generate_time
 
 app = Flask(__name__)
-
-def save_image(image, path):
-    if image:
-        image.save(path)
-
-def generate_image_paths(num_images):
-    return [f'static/imagen{i}.png' for i in range(1, num_images + 1)]
-
-def generate_inline_images(document, image_paths):
-    return [InlineImage(document, path, width=Inches(7.5), height=Inches(4.0)) if os.path.exists(path) else None for path in image_paths]
-
-def generate_date():
-    date_time = datetime.now()
-    return date_time.strftime("%d-%m-%Y")
-
-def generate_time():
-    date_time = datetime.now()
-    return date_time.strftime("%H:%M:%S")
 
 @app.route('/')
 def index():
@@ -36,7 +21,7 @@ def generate_word():
     casoprueba = request.form['casoprueba']
     autor = request.form['responsable']
 
-    opcion_radio = {f'opcion_radio{i}': request.form.get(f'opcion_radio{i}') for i in range(1, 10)}
+    opcion_radio = {f'opcion_radio{i}': request.form.get(f'opcion_radio{i}') for i in range(1, 12)}
 
     num_images = 11
     image_paths = generate_image_paths(num_images)
