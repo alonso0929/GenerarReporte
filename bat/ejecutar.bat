@@ -1,4 +1,4 @@
 cd ..
-python app.py
+python appV2.py
 
 pause

@@ -2,6 +2,8 @@ from docxtpl import InlineImage
 from docx.shared import Inches
 import os
 from datetime import datetime
+from docx.shared import Inches
+from docx.shared import Cm
 
 
 def save_image(image, path):
@@ -21,3 +23,10 @@ def generate_date():
 def generate_time():
     date_time = datetime.now()
     return date_time.strftime("%H:%M:%S")
+
+def configuration_word(doc):
+    section = doc.sections[0]
+    section.left_margin = Cm(1.27) 
+    section.right_margin = Cm(1.27)  
+    section.top_margin = Cm(1.27)  
+    section.bottom_margin = Cm(1.27)
