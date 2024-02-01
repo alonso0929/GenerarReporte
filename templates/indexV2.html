@@ -14,16 +14,29 @@
 </head>
 <body class="container mt-5">
     <div>
-        <h1 class="text-center">Pruebas Simulación APIS Core Flag ON</h1>
+        <h1 class="text-center">Pruebas Simulación Flag ON</h1>
     </div>
     <form action="/generate_word" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="responsable" class="form-label"><b>Responsable:</b></label>
             <select name="responsable" class="form-select" required>
                 <option value="" disabled selected>Seleccione QA</option>
-                <option value="Alonso Molina">Alonso Molina</option>
-                <option value="Rony Mocilote">Rony Mocilote</option>
                 <option value="Joel Abanto">Joel Abanto</option>
+                <option value="Wilson Dominguez">Wilson Dominguez</option>
+                <option value="Rony Mocilote">Rony Mocilote</option> 
+                <option value="Alonso Molina">Alonso Molina</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="aplicativo" class="form-label"><b>Aplicativo:</b></label>
+            <select name="aplicativo" class="form-select" required>
+                <option value="" disabled selected>Seleccione aplicativo</option>
+                <option value="API CORE P&C">APIS CORE P&C</option>
+                <option value="APIS PAGOS Y COBRANZAS">APIS PAGOS Y COBRANZAS</option>
+                <option value="PORTAL COBRANZAS">PORTAL COBRANZAS</option>
+                <option value="PORTAL BROKERS">PORTAL BROKERS</option>
+                <option value="APP RIMAC MOBILE">APP RIMAC MOBILE</option>
             </select>
         </div>
 
@@ -33,17 +46,31 @@
         </div>
 
         <div class="mb-3">
-            <label for="financiamiento" class="form-label"><b>Financiamiento:</b></label>
-            <input type="text" name="financiamiento" class="form-control" required>
+            <label for="indiceprueba" class="form-label"><b>Indice caso de prueba:</b></label>
+            <input type="indiceprueba" name="indiceprueba" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="casoprueba" class="form-label"><b>Caso de Prueba:</b></label>
-            <textarea name="casoprueba" class="form-control" required></textarea>
+            <label for="descripcionprueba" class="form-label"><b>Descripción caso de prueba:</b></label>
+            <input type="descripcionprueba" name="descripcionprueba" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo1"><b>Registro de tercero BDU:</b></label>
+            <label for="observaciones" class="form-label"><b>Observaciones:</b></label>
+            <textarea name="observaciones" class="form-control" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="estado" class="form-label"><b>Estado de la prueba:</b></label>
+            <select name="estado" class="form-select" required>
+                <option value="" disabled selected>Seleccione estado:</option>
+                <option value="Conforme">Conforme</option>
+                <option value="Observado">Observado</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" name="titulo1"><b>Registro de tercero AX Azure Aplicativo:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio1" value="Si aplica" onclick="toggleInputFile('inputFileContainer1', true)">
@@ -58,13 +85,14 @@
             </div>
 
             <div id="inputFileContainer1" class="hidden">
+                <input type="text" name="observacion1" class="form-control">
                 <label for="imagen1" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes1[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo2"><b>Registro de tercero ACSELX Aplicativo:</b></label>
+            <label class="form-label" name="titulo2"><b>Registro de tercero CDX Azure Aplicativo:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio2" value="Si aplica" onclick="toggleInputFile('inputFileContainer2', true)">
@@ -79,13 +107,14 @@
             </div>
 
             <div id="inputFileContainer2" class="hidden">
+                <input type="text" name="observacion2" class="form-control">
                 <label for="imagen2" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes2[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo3"><b>Registro de póliza ACSELX BD:</b></label>
+            <label class="form-label" name="titulo3"><b>Registro de tercero SAS Aplicativo:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio3" value="Si aplica" onclick="toggleInputFile('inputFileContainer3', true)">
@@ -100,13 +129,14 @@
             </div>
 
             <div id="inputFileContainer3" class="hidden">
+                <input type="text" name="observacion3" class="form-control">
                 <label for="imagen3" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes3[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo4"><b>Registro de póliza CDX BD (ITF):</b></label>
+            <label class="form-label" name="titulo4"><b>Registro de tercero BDU:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio4" value="Si aplica" onclick="toggleInputFile('inputFileContainer4', true)">
@@ -121,13 +151,14 @@
             </div>
 
             <div id="inputFileContainer4" class="hidden">
+                <input type="text" name="observacion4" class="form-control">
                 <label for="imagen4" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes4[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo5"><b>Registro de póliza ACSELX Aplicativo:</b></label>
+            <label class="form-label" name="titulo5"><b>Registro de póliza ACSELX Azure Aplicativo:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio5" value="Si aplica" onclick="toggleInputFile('inputFileContainer5', true)">
@@ -142,13 +173,14 @@
             </div>
 
             <div id="inputFileContainer5" class="hidden">
+                <input type="text" name="observacion5" class="form-control">
                 <label for="imagen5" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes5[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo6"><b>Registro de póliza Rímac Salud:</b></label>
+            <label class="form-label" name="titulo6"><b>Registro de huella contable AX BD:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio6" value="Si aplica" onclick="toggleInputFile('inputFileContainer6', true)">
@@ -163,13 +195,14 @@
             </div>
 
             <div id="inputFileContainer6" class="hidden">
+                <input type="text" name="observacion6" class="form-control">
                 <label for="imagen6" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes6[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo7"><b>Registro de póliza SAS:</b></label>
+            <label class="form-label" name="titulo7"><b>Registro de póliza ITF CDX Azure BD:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio7" value="Si aplica" onclick="toggleInputFile('inputFileContainer7', true)">
@@ -184,13 +217,14 @@
             </div>
 
             <div id="inputFileContainer7" class="hidden">
+                <input type="text" name="observacion7" class="form-control">
                 <label for="imagen7" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes7[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo8"><b>Validar documentos de cobro CDX BD:</b></label>
+            <label class="form-label" name="titulo8"><b>Registro de documentos de cobro CDX Azure Aplicativo:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio8" value="Si aplica" onclick="toggleInputFile('inputFileContainer8', true)">
@@ -205,13 +239,14 @@
             </div>
 
             <div id="inputFileContainer8" class="hidden">
+                <input type="text" name="observacion8" class="form-control">
                 <label for="imagen8" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes8[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo9"><b>Validar documentos de cobro CDX Aplicativo:</b></label>
+            <label class="form-label" name="titulo9"><b>Validación de pagos:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio9" value="Si aplica" onclick="toggleInputFile('inputFileContainer9', true)">
@@ -226,50 +261,9 @@
             </div>
 
             <div id="inputFileContainer9" class="hidden">
+                <input type="text" name="observacion9" class="form-control">
                 <label for="imagen9" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes9[]" class="form-control" accept="image/*" multiple>
-            </div>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" name="titulo10"><b>Validar pasarela de pagos:</b></label>
-            <div class="form-check">
-                <label>
-                    <input type="radio" name="opcion_radio10" value="Si aplica" onclick="toggleInputFile('inputFileContainer10', true)">
-                    Si aplica
-                </label>
-            </div>
-            <div class="form-check">
-                <label>
-                    <input type="radio" name="opcion_radio10" value="No aplica" onclick="toggleInputFile('inputFileContainer10', false)">
-                    No aplica
-                </label>
-            </div>
-
-            <div id="inputFileContainer10" class="hidden">
-                <label for="imagen10" class="form-label">Evidencia:</label>
-                <input type="file" name="imagenes10[]" class="form-control" accept="image/*" multiple>
-            </div>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" name="titulo11"><b>Validar que no exista en ACSELX OP:</b></label>
-            <div class="form-check">
-                <label>
-                    <input type="radio" name="opcion_radio11" value="Si aplica" onclick="toggleInputFile('inputFileContainer11', true)">
-                    Si aplica
-                </label>
-            </div>
-            <div class="form-check">
-                <label>
-                    <input type="radio" name="opcion_radio11" value="No aplica" onclick="toggleInputFile('inputFileContainer11', false)">
-                    No aplica
-                </label>
-            </div>
-
-            <div id="inputFileContainer11" class="hidden">
-                <label for="imagen11" class="form-label">Evidencia:</label>
-                <input type="file" name="imagenes11[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 

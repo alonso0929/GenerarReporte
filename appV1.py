@@ -53,7 +53,7 @@ def generate_word():
         if os.path.exists(image_path):
             os.remove(image_path)
 
-    return send_file(output_stream, as_attachment=True, download_name=f'APIs_CORE_P&C_EVIDENCIAQA_{producto}_{financiamiento}.docx')
+    return send_file(output_stream, as_attachment=True, download_name=f'APIs_CORE_P&C_EVIDENCIA_QA_{producto}_{financiamiento}_V1.docx')
 
 if __name__ == '__main__':
     app.run(debug=True)
