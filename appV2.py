@@ -2,9 +2,10 @@ from flask import Flask, render_template, request, send_file
 from io import BytesIO
 from docx import Document
 from docx.image.exceptions import UnrecognizedImageError
-from docx.shared import Inches
+from docx.shared import Inches, Cm
+from docx.shared import RGBColor
 from bs4 import BeautifulSoup
-from utils import generate_date, generate_time, configuration_word
+from utils import generate_date, configuration_word, draw_table
 
 app = Flask(__name__)
 
@@ -20,31 +21,53 @@ def generate_word():
     indicePrueba = request.form['indiceprueba']
     descripcionPrueba = request.form['descripcionprueba']
     observaciones = request.form['observaciones']
+    ejecucion = request.form['ejecucion']
     estado = request.form['estado']
 
     documento = Document()
     configuration_word(documento)
 
-    documento.add_heading(f'REPORTE DE PRUEBAS FLAGON API CORE PYC - {producto}', 0)
+    documento.add_heading(f'REPORTE DE PRUEBAS FLAGON {aplicativo} - {producto}', 0)
 
-    documento.add_paragraph(f'Responsable: {responsable}')
-    documento.add_paragraph(f'Aplicativo: {aplicativo}')
-    documento.add_paragraph(f'Producto: {producto}')
-    documento.add_paragraph(f'Indice caso de prueba: {indicePrueba}')
-    documento.add_paragraph(f'Descripcion caso de prueba: {descripcionPrueba}')
-    documento.add_paragraph(f'Observaciones: {observaciones}')
-    documento.add_paragraph(f'Estado: {estado}') 
-    documento.add_paragraph(f'Fecha: {generate_date()}')
+    p_titulo = documento.add_paragraph()
+    p_titulo.alignment = 1
+    run_titulo = p_titulo.add_run('Hoja de Control')
+    run_titulo.bold = True
 
-    soup = BeautifulSoup(render_template('indexv2.html'), 'html.parser')
+    draw_table(documento, responsable, aplicativo, producto, indicePrueba, descripcionPrueba, observaciones,
+               estado, generate_date())
+
+    p_ejecucion = documento.add_paragraph()
+    run_ejecucion = p_ejecucion.add_run(f'Evidencia ejecución de la prueba: {ejecucion}')
+    run_ejecucion.bold = True
+
+    soup = BeautifulSoup(render_template('indexV2.html'), 'html.parser')
     labels = soup.find_all('label', {'name': True})
 
     for i, label in enumerate(labels, start=1):
         texto = label.text.strip()
+        opcion_estado = request.form.get(f'estado{i}', '')
         opcion_radio = request.form.get(f'opcion_radio{i}', '')
-        opcion_observaciones = request.form.get(f'observacion{i}', '')
-        documento.add_paragraph(f'{texto} {opcion_radio}')
-        documento.add_paragraph(f'{opcion_observaciones}')
+        opcion_comentarios = request.form.get(f'comentario{i}', '')
+
+        p_op_radio = documento.add_paragraph()
+        run_op_radio = p_op_radio.add_run(f'{texto} {opcion_radio}')
+        run_op_radio.bold = True
+
+        p_op_estado = documento.add_paragraph()
+        run_op_estado = p_op_estado.add_run(f'{opcion_estado}')
+        run_op_estado.bold = True
+
+        if opcion_estado=="Conforme":
+            run_op_radio.font.color.rgb = RGBColor(0, 255, 0)
+            run_op_estado.font.color.rgb = RGBColor(0, 255, 0)
+        elif opcion_estado=="Observado":
+            run_op_radio.font.color.rgb = RGBColor(255, 0, 0)
+            run_op_estado.font.color.rgb = RGBColor(255, 0, 0)
+        else:
+            print("No aplica")
+        
+        documento.add_paragraph(f'{opcion_comentarios}')
 
         input_name = f'imagenes{i}[]'
         imagenes = request.files.getlist(input_name)

@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 from docx.shared import Inches
 from docx.shared import Cm
-
+from docx.oxml import OxmlElement
 
 def save_image(image, path):
     if image:
@@ -30,3 +30,42 @@ def configuration_word(doc):
     section.right_margin = Cm(1.27)  
     section.top_margin = Cm(1.27)  
     section.bottom_margin = Cm(1.27)
+    
+def draw_table(doc, responsable, aplicativo, producto, indicePrueba, descripcionPrueba, 
+               observaciones, estado, fecha):
+    
+    table = doc.add_table(rows=8, cols=2)
+    table.style = 'Table Grid'
+
+    width_column_1 = Cm(4)
+    width_column_2 = Cm(16)
+        
+    for i in range(8):
+        cell_1 = table.cell(i, 0)
+        cell_2 = table.cell(i, 1)
+
+        cell_1.width = width_column_1
+        cell_2.width = width_column_2
+
+        cell_border = cell_1._element.xpath('.//w:tcBorders')
+        if not cell_border:
+            cell_border = [OxmlElement('w:tcBorders')]
+            cell_1._element.append(cell_border[0])
+        cell_border[0].append(OxmlElement('w:right'))
+
+        headers = ["Responsable", "Aplicativo", "Producto", "Indice caso de prueba",
+                   "Descripcion caso de prueba", "Observaciones", "Estado de la prueba", 
+                   "Fecha de generación del reporte"]
+
+        cell_header = table.cell(i, 0)
+        cell_header.text = headers[i]
+        cell_header.paragraphs[0].runs[0].bold = True
+
+    data_document = [responsable, aplicativo, producto, indicePrueba, descripcionPrueba,
+                        observaciones, estado, fecha]
+
+    for i, value in enumerate(data_document):
+        table.cell(i, 1).text = value
+
+    table.alignment = 1
+    doc.add_paragraph()
