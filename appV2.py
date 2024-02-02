@@ -50,34 +50,37 @@ def generate_word():
         opcion_radio = request.form.get(f'opcion_radio{i}', '')
         opcion_comentarios = request.form.get(f'comentario{i}', '')
 
-        p_op_radio = documento.add_paragraph()
-        run_op_radio = p_op_radio.add_run(f'{texto} {opcion_radio}')
-        run_op_radio.bold = True
+        if opcion_radio=="Si aplica":
+            p_op_radio = documento.add_paragraph()
+            run_op_radio = p_op_radio.add_run(f'{texto} {opcion_radio}')
+            run_op_radio.bold = True
 
-        p_op_estado = documento.add_paragraph()
-        run_op_estado = p_op_estado.add_run(f'{opcion_estado}')
-        run_op_estado.bold = True
+            p_op_estado = documento.add_paragraph()
+            run_op_estado = p_op_estado.add_run(f'{opcion_estado}')
+            run_op_estado.bold = True
 
-        if opcion_estado=="Conforme":
-            run_op_radio.font.color.rgb = RGBColor(0, 255, 0)
-            run_op_estado.font.color.rgb = RGBColor(0, 255, 0)
-        elif opcion_estado=="Observado":
-            run_op_radio.font.color.rgb = RGBColor(255, 0, 0)
-            run_op_estado.font.color.rgb = RGBColor(255, 0, 0)
-        else:
+            if opcion_estado=="Conforme":
+                run_op_radio.font.color.rgb = RGBColor(0, 255, 0)
+                run_op_estado.font.color.rgb = RGBColor(0, 255, 0)
+            elif opcion_estado=="Observado":
+                run_op_radio.font.color.rgb = RGBColor(255, 0, 0)
+                run_op_estado.font.color.rgb = RGBColor(255, 0, 0)
+            else:
+                print("Estado no válido")
+
+            documento.add_paragraph(f'{opcion_comentarios}')
+
+            input_name = f'imagenes{i}[]'
+            imagenes = request.files.getlist(input_name)
+
+            if imagenes:
+                for imagen in imagenes:
+                    try:
+                        documento.add_picture(imagen, width=Inches(7.5), height=Inches(4.0))
+                    except UnrecognizedImageError as e:
+                        pass
+        else: 
             print("No aplica")
-        
-        documento.add_paragraph(f'{opcion_comentarios}')
-
-        input_name = f'imagenes{i}[]'
-        imagenes = request.files.getlist(input_name)
-
-        if imagenes:
-            for imagen in imagenes:
-                try:
-                    documento.add_picture(imagen, width=Inches(7.5), height=Inches(4.0))
-                except UnrecognizedImageError as e:
-                    pass
 
     output_stream = BytesIO()
     documento.save(output_stream)
