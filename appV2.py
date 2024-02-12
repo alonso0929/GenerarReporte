@@ -52,7 +52,7 @@ def generate_word():
 
         if opcion_radio=="Si aplica":
             p_op_radio = documento.add_paragraph()
-            run_op_radio = p_op_radio.add_run(f'{texto} {opcion_radio}')
+            run_op_radio = p_op_radio.add_run(f'{texto}')
             run_op_radio.bold = True
 
             p_op_estado = documento.add_paragraph()
