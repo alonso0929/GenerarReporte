@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, send_file
 from io import BytesIO
 from docx import Document
 from docx.image.exceptions import UnrecognizedImageError
-from docx.shared import Inches, Cm
+from docx.shared import Inches
 from docx.shared import RGBColor
 from bs4 import BeautifulSoup
 from utils import generate_date, configuration_word, draw_table
