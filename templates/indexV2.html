@@ -80,8 +80,8 @@
             <label for="estado" class="form-label"><b>Estado de la prueba:</b></label>
             <select name="estado" class="form-select" required>
                 <option value="" disabled selected>Seleccione estado:</option>
-                <option value="Conforme">Conforme</option>
-                <option value="Observado">Observado</option>
+                <option value="CONFORME">Conforme</option>
+                <option value="OBSERVADO">Observado</option>
             </select>
         </div>
 
@@ -342,7 +342,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo9"><b>Validación de pagos:</b></label>
+            <label class="form-label" name="titulo9"><b>Registro de póliza AX Cloud:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio9" value="Si aplica" onclick="toggleInputFile('inputFileContainer9', true)">
@@ -374,7 +374,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo10"><b>Tablas Dynamo:</b></label>
+            <label class="form-label" name="titulo10"><b>Validación de pagos:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio10" value="Si aplica" onclick="toggleInputFile('inputFileContainer10', true)">
@@ -406,7 +406,7 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label" name="titulo11"><b>Registro de póliza AX Cloud:</b></label>
+            <label class="form-label" name="titulo11"><b>Tablas Dynamo:</b></label>
             <div class="form-check">
                 <label>
                     <input type="radio" name="opcion_radio11" value="Si aplica" onclick="toggleInputFile('inputFileContainer11', true)">
@@ -434,6 +434,70 @@
                 <input type="text" name="comentario11" class="form-control">
                 <label for="imagen11" class="form-label">Evidencia:</label>
                 <input type="file" name="imagenes11[]" class="form-control" accept="image/*" multiple>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" name="titulo12"><b>CloudWatch:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio12" value="Si aplica" onclick="toggleInputFile('inputFileContainer12', true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio12" value="No aplica" onclick="toggleInputFile('inputFileContainer12', false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer12" class="hidden">
+                <div class="mb-3">
+                    <label for="estado12" class="form-label">Estado de la evidencia:</label>
+                    <select name="estado12" class="form-select">
+                        <option value="" disabled selected>Seleccione estado:</option>
+                        <option value="Conforme">Conforme</option>
+                        <option value="Observado">Observado</option>
+                    </select>
+                </div>
+
+                <label for="comentarios" class="form-label">Comentarios adicionales:</label>
+                <input type="text" name="comentario12" class="form-control">
+                <label for="imagen12" class="form-label">Evidencia:</label>
+                <input type="file" name="imagenes12[]" class="form-control" accept="image/*" multiple>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" name="titulo13"><b>Step Functions:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio13" value="Si aplica" onclick="toggleInputFile('inputFileContainer13', true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio13" value="No aplica" onclick="toggleInputFile('inputFileContainer13', false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer13" class="hidden">
+                <div class="mb-3">
+                    <label for="estado13" class="form-label">Estado de la evidencia:</label>
+                    <select name="estado13" class="form-select">
+                        <option value="" disabled selected>Seleccione estado:</option>
+                        <option value="Conforme">Conforme</option>
+                        <option value="Observado">Observado</option>
+                    </select>
+                </div>
+
+                <label for="comentarios" class="form-label">Comentarios adicionales:</label>
+                <input type="text" name="comentario13" class="form-control">
+                <label for="imagen13" class="form-label">Evidencia:</label>
+                <input type="file" name="imagenes13[]" class="form-control" accept="image/*" multiple>
             </div>
         </div>
 
