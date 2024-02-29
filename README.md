@@ -1,2 +1,2 @@
 # GenerarReporte
-Generador de reporte Word de pruebas APIS Core Rimac
+Generador de reporte Word de pruebas en aplicativos Rimac
