@@ -501,6 +501,38 @@
             </div>
         </div>
 
+        <div class="mb-3">
+            <label class="form-label" name="titulo14"><b>Correo Electrónico:</b></label>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio14" value="Si aplica" onclick="toggleInputFile('inputFileContainer14', true)">
+                    Si aplica
+                </label>
+            </div>
+            <div class="form-check">
+                <label>
+                    <input type="radio" name="opcion_radio14" value="No aplica" onclick="toggleInputFile('inputFileContainer14', false)">
+                    No aplica
+                </label>
+            </div>
+
+            <div id="inputFileContainer14" class="hidden">
+                <div class="mb-3">
+                    <label for="estado14" class="form-label">Estado de la evidencia:</label>
+                    <select name="estado14" class="form-select">
+                        <option value="" disabled selected>Seleccione estado:</option>
+                        <option value="Conforme">Conforme</option>
+                        <option value="Observado">Observado</option>
+                    </select>
+                </div>
+
+                <label for="comentarios" class="form-label">Comentarios adicionales:</label>
+                <input type="text" name="comentario14" class="form-control">
+                <label for="imagen14" class="form-label">Evidencia:</label>
+                <input type="file" name="imagenes14[]" class="form-control" accept="image/*" multiple>
+            </div>
+        </div>
+
         <input type="submit" value="Generar Word" class="btn btn-primary">
         <button type="button" onclick="limpiarCampos()" class="btn btn-primary">Limpiar</button>
     </form>
@@ -531,7 +563,7 @@
                 }
             }
 
-            for (var j = 1; j <= 10; j++) {
+            for (var j = 1; j <= 15; j++) {
                 var inputFileContainer = document.getElementById('inputFileContainer' + j);
                 if (inputFileContainer) {
                     inputFileContainer.classList.add("hidden");
